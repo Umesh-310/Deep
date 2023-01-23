@@ -10,6 +10,8 @@
  
 <table align="center" cellpadding = "10">
 
+<form action="insert.php" method="post">
+
 <!----- Email Id ---------------------------------------------------------->
 <tr>
 <td>EMAIL ID</td>
@@ -117,3 +119,42 @@ Female <input type="radio" name="Gender" value="Female" />
  
 </body>
 </html>
+
+<!-- ////////////////////////////////////////////////////// -->
+
+<?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "DataBase";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+$fname = $_POST['First_Name'];
+ $lname = $_POST['Last_Name'];
+ $email = $_POST['Email_Id'];
+ $password = $_POST['Password'];
+ $gender = $_POST['Gender'];
+ $dob = $_POST['Date_of_birth'];
+ $zipcode = $_POST['Pin_Code'];
+ $address = $_POST['Address'];
+ $city = $_POST['City'];
+ $state = $_POST['State'];
+ $country = $_POST['Country'];
+ $mob = $_POST['Mobile_Number'];
+
+$sql = "INSERT INTO TableName VALUES (`$email`, `$password`, `$fname`,`$lname`,`$gender`,`$dob`,`$zipcode`,`$address`,`$city`,`$state`,`$country`,``$mob)";
+
+if ($conn->query($sql) === TRUE) {
+  echo "New record created successfully";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+ 
+
+?>
